@@ -23,6 +23,7 @@ Volunteering at parkrun is great fun but most regulars would agree that the job 
 ## Acquire Data
 
 I used the python libraries Requests and Beautiful Soup to scrape and parse results data published online.  Initially I had hoped to collect data from all past events across the UK but soon found that it would be sufficient and more practical to limit the number of events and timescale considered.  When Parkrun started in 2004 there was one event with 13 participants - a great start but certainly an outlier when considering the scale of current events.  I decided to focus on the Greater London area as it has a high density of events, with many runners participating at multiple locations over time, known as Parkrun Tourism!  I hoped that this data would be useful in identifying characteristics of different events and might allow other approaches including clustering and network analysis of running communities at a later stage.
+
 Data acquired:
 * 52 event locations in the Greater London Area
 * 4 years' event history (14/05/2016 - 14/03/2020)
@@ -30,6 +31,9 @@ Data acquired:
 * 2,694,007 finish time records
 
 The code used for web scraping is included in this notebook - [London Data Collector](london_data_collector.ipynb)
+
+![](images/event_map_4.png)
+
 
 ## Data Cleaning
 
