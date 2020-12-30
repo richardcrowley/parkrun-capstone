@@ -26,16 +26,36 @@ I used the python libraries Requests and Beautiful Soup to scrape and parse resu
 
 Data acquired:
 * 52 event locations in the Greater London Area
-* 4 years' event history (14/05/2016 - 14/03/2020)
+* 4 years' event history (14/05/2016 - 14/03/2020, up to 205 events)
 * 269,697 unique participants
 * 2,694,007 finish time records
 
 The code used for web scraping is included in this notebook - [London Data Collector](london_data_collector.ipynb)
 
-![](images/event_map_4.png)
+This map shows the locations of the events in Greater London as well as the total number of finishes in my dataset.
+![Event locations and number of finishers](images/event_map_4.png)
 
 
 ## Data Cleaning
 
+Given the size of the dataset I removed repeated text to reduce filesize, storing athlete and event data in separate reference files, linked by Athlete ID and Event Index respectively.  This left the following columns:
 
+event_index (integer) - identifies the event location
+event_no (integer) - identifies the numbered instance of the event
+date (datetime) - the date of the event
+positions (integer) - finish position
+athlete_no (integer) - unique participant identifier
+total_parkruns (integer) - the total number of times the finisher has participated in a parkrun previously
+run_time (integer) - finish time in seconds
+event_PB (integer) - previous best time at the event for the individual participant at the same event
+in_club (integer) - indicate if the participant is registered with a running club (1) or not (0)
+age_groups (string) - category indicating the gender and age group of the participant
+age_grades (float) - percentage score measuring the participants time against the best recorded time for their age group.
+
+For more information on Age Grades see - [Parkrun Age Grades](https://support.parkrun.com/hc/en-us/articles/200565263-What-is-age-grading-)
+
+Data cleaning was, as always, a fairly long and iterative process so I will just highlight a few of the challenges that is presented.
+
+* Unknown Runners
+Not all participants choose to register with parkrun so that their results are recorded and published online.  These appear in the results tables as "Unknown Runner", occupying a finish position but without any further data, including finish time.  There were a total of 254,545 unknown runners in the dataset.  
 
