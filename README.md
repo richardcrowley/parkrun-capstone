@@ -40,6 +40,7 @@ This map shows the locations of the events in Greater London as well as the tota
 
 Given the size of the dataset I removed repeated text to reduce filesize, storing athlete and event data in separate reference files, linked by Athlete ID and Event Index respectively.  This left the following columns:
 
+<font size="8">
 event_index (integer) - identifies the event location
 event_no (integer) - identifies the numbered instance of the event
 date (datetime) - the date of the event
@@ -51,6 +52,7 @@ event_PB (integer) - previous best time at the event for the individual particip
 in_club (integer) - indicate if the participant is registered with a running club (1) or not (0)
 age_groups (string) - category indicating the gender and age group of the participant
 age_grades (float) - percentage score measuring the participants time against the best recorded time for their age group.
+</font>
 
 For more information on Age Grades see - [Parkrun Age Grades](https://support.parkrun.com/hc/en-us/articles/200565263-What-is-age-grading-)
 
