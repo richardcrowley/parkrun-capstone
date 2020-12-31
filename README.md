@@ -40,17 +40,33 @@ This map shows the locations of the events in Greater London as well as the tota
 
 Given the size of the dataset I removed repeated text to reduce filesize, storing athlete and event data in separate reference files, linked by Athlete ID and Event Index respectively.  This left the following columns:
 
-<font size="5">event_index (integer) - identifies the event location
+| Column | Description |
+| --- | ----------- |
+| event_index | event location |
+| event_no | numbered instance of the event |
+| date | date of the event |
+| positions | finish position |
+| athlete_no | unique participant ID |
+| total_parkruns | no of times the finisher has participated in a parkrun |
+| run_time | finish time (seconds) |
+| event_PB | previous best time at the same event for participant |
+| in_club | the participant is registered with a running club (1) or not (0) |
+| age_groups | gender and age group category of the participant |
+| age_grades | score measuring performance against peers in age group |
+
+
+
+event_index (integer) - identifies the event location
 event_no (integer) - identifies the numbered instance of the event
 date (datetime) - the date of the event
 positions (integer) - finish position
 athlete_no (integer) - unique participant identifier
 total_parkruns (integer) - the total number of times the finisher has participated in a parkrun previously
 run_time (integer) - finish time in seconds
-event_PB (integer) - previous best time at the event for the individual participant at the same event
+event_PB (integer) - previous best time at the same event for the individual participant
 in_club (integer) - indicate if the participant is registered with a running club (1) or not (0)
 age_groups (string) - category indicating the gender and age group of the participant
-age_grades (float) - percentage score measuring the participants time against the best recorded time for their age group.</font>
+age_grades (float) - percentage score measuring the participants time against the best recorded time for their age group
 
 
 For more information on Age Grades see - [Parkrun Age Grades](https://support.parkrun.com/hc/en-us/articles/200565263-What-is-age-grading-)
