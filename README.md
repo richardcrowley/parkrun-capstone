@@ -141,11 +141,13 @@ Finding the best model - Scores
 The simple Linear Regression model performs quite well with consistent train, test and mean CV scores.  Adding regularisation wiht the Ridge and Elastic Net models did not alter the results. The Decision Tree Regressor model showed significant improvement in R2 scores add errors, so I tested other tree-based models for comparison.
 
 <details>
-    <summary> View Decision Tree graph visualisation </summary> 
-    ![Decision Tree graph visualisation](images/decision_tree.png)
+    
+<summary> View Decision Tree graph visualisation </summary>
+
+![Decision Tree graph](images/decision_tree.png)
+
 </details>
 
-More model scores
 
 ![Tree based model scores](images/scores_2.png)
 
