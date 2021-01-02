@@ -105,7 +105,38 @@ Another pre-processing step was to take log transform of the event_PB and positi
 
 ## Modelling
 
+### Preparing the data
 
+* Feature selection
+
+I selected features that contained information that would only be available in the absence of stopwatch timing, dropping age grade scores which are calculated from finish times.
+
+regression_cols = ['event_index', 'positions',
+       'total_parkruns', 'event_PB', 'in_club', 'age_groups',
+       'month', 'count_finishers', 'season',
+       'med_course_time']
+
+target_col = ['run_time']
+
+* Transformations
+
+I applied log transfors to positions, event_PB and run_time.
+
+* Train-Test Split
+
+I applied an 80:20 train-test split to the data.
+
+* Standardisation
+
+I applied the StandardScaler to the features as many of the models I will use regularisation which requires this.
+
+### Fitting and scoring models
+
+I fitted a range of regression models on the training set and obtained R2 scores for training and test set.  I performed 5-fold cross validation and obtained mean CV score to check the generalisability of the model, and also calculated MSE, RMSE and MAE of the predictions.
+
+Finding the best model - Scores
+
+![Regression Model scoring](images/scores_1.png)
 
 
 
