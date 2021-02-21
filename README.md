@@ -77,7 +77,7 @@ There were two event instances where there was no volunteer timekeeper so all fi
 
 Next I performed thorough EDA to get to know the data, the distributions of the features and the correlations between them.
 I have summarised the key findings and plots in the following notebook:
-[EDA_parkrun]()
+[EDA_parkrun]('EDA_parkrun.ipynb')
 
 ### The target
 
