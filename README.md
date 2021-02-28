@@ -169,13 +169,16 @@ Included in this notebook:
 
 Whilst overall the model scores very well on the full dataset, when applying to single event to predict times it has some significant limitations
 
-* Different conditions are not well captured 
+* Different conditions are not well captured
+
 This is clearly illustrated in the evaluation of the Wimbledon Common event, where conditions were particulary muddy and difficult which resulted in model predicting significantly faster times than were observed. We can see from the feature importances for the best models that the event_index, season and month features, which do contain some information on the expected conditions have low importance so this is to be expected.
 
 * Predicted times do not increase monotonically with position
+
 This is a major limitation as it means the results do not make sense in practice and could not be used without adjustment.  It would be difficult to improve much further on this as the predictions are largely based on previous times, but in reality this is a fun, amateur event and participants do not perform consistently in relation to their best time.  They may sometimes run slower to take part with friends, or run with dogs or even buggies which brings an unpredictable variation in times.
 
 * Unknown Runners and new participants
+
 Additional processing of results would need to be developed for Unknown Runners, who do not register for their time, and new participants, who do not have previous statistics, as the model relies on the these features to make predicitons.
 
 ## Conclusions
