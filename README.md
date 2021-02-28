@@ -1,6 +1,7 @@
 # Data Science Capstone Project - Predicting parkrun results
 
 This project was completed as part of the Data Science Immersive course at General Assembly in December 2020.
+Note that the data is not included in this repo but notebooks with code used to acquire, clean, analyse and model the data are available.
 
 ## Background
 
@@ -17,7 +18,7 @@ Volunteering at parkrun is great fun but most regulars would agree that the job 
 2. [Data Cleaning](#Data-Cleaning) - identify missing or inconsistent data.  Store in a clean format ready for processing.
 3. [EDA](#EDA) - explore the data to identify trends and correlations
 4. [Modelling](#Modelling) - train a range of regression models, score, cross-validate and test on unseen data.
-5. [Evaluate Model](#Evaluate-Model) - Evaluate and assess limitations of best model in practice against stated aim.
+5. [Evaluation](#Evaluation) - Evaluate and assess limitations of best model in practice against stated aim.
 6. [Conclusions](#Conclusions)
 
 ## Acquire Data
@@ -152,6 +153,38 @@ The simple Linear Regression model performs quite well with consistent train, te
 ![Tree based model scores](images/scores_2.png)
 
 
-        
+## Evaluation
+
+Examples of the best models and evaluation can be found in the following notebook:
+[Modelling_parkrun](Modelling_parkrun.ipynb)
+
+Included in this notebook:
+* Decision Tree Regressor
+* Histogram-based Gradient Boosting Regressor
+* Evaluation of predictions for two individual events
+
+### Limitations
+
+**Has the goal of predicting finish times with sufficient accuracy to replace the stopwatch been acheived?**
+
+Whilst overall the model scores very well on the full dataset, when applying to single event to predict times it has some significant limitations
+
+* Different conditions are not well captured 
+This is clearly illustrated in the evaluation of the Wimbledon Common event, where conditions were particulary muddy and difficult which resulted in model predicting significantly faster times than were observed. We can see from the feature importances for the best models that the event_index, season and month features, which do contain some information on the expected conditions have low importance so this is to be expected.
+
+* Predicted times do not increase monotonically with position
+This is a major limitation as it means the results do not make sense in practice and could not be used without adjustment.  It would be difficult to improve much further on this as the predictions are largely based on previous times, but in reality this is a fun, amateur event and participants do not perform consistently in relation to their best time.  They may sometimes run slower to take part with friends, or run with dogs or even buggies which brings an unpredictable variation in times.
+
+* Unknown Runners and new participants
+Additional processing of results would need to be developed for Unknown Runners, who do not register for their time, and new participants, who do not have previous statistics, as the model relies on the these features to make predicitons.
+
+## Conclusions
+
+Overall this has been an interesting and worthwhile project.  A large amount of data was collected through web scraping with nearly 2.7 million observations of finish times across 52 event locations in Greater London.  A full range of regression modelling techniques were employed and the models scored very highly on the full dataset.  However evaluating the model against the stated aim of predicting all finish times for an individual event revealed some significant limitations, particularly in unusual conditions.  The next steps for this project would be:
+- Add more detailed features to capture unique event conditions, which would likely involve a manual approach in assesing individual events.
+- Collect data on a wider range of events, retrain and evaluate the model.
+- Use other techniques such as clustering and network analysis to identify event and runner characteristics and communities.
+
+If you found this project interesting and would like to discuss further then please feel free to contact me via Github or [LinkedIn](https://www.linkedin.com/in/richard-crowley-10/).
 
 
