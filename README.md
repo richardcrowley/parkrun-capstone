@@ -5,20 +5,20 @@ Note that the data is not included in this repo but notebooks with code used to 
 
 ## Background
 
-[Parkrun](https://www.parkrun.org.uk/) organise free weekly timed runs, delivered by local volunteers, in 20 different countries globally.  People of all abilities are encouraged to run, walk or jog 5km at their local course with events taking place every Saturday morning.  Results are published online shortly afterwards.  Parkrun started in 2004 and now has 672 locations in the UK alone.  To date over 2.3 million unique participants have crossed the finish line a total of 34.8 million times.  As a keen parkrunner I saw this as a great dataset to explore.
+[Parkrun](https://www.parkrun.org.uk/) organise free weekly timed runs, delivered by local volunteers, in 20 different countries globally.  People of all abilities are encouraged to run, walk or jog 5km at their local course with events taking place every Saturday morning.  Results are published online shortly afterwards.  Parkrun started in 2004 and now has 672 locations in the UK alone.  To date, over 2.3 million unique participants have crossed the finish line a total of 34.8 million times.  As a keen parkrunner I saw this as a great dataset to explore.
 
 ## Goals
 
-Volunteering at parkrun is great fun but most regulars would agree that the job of timekeeper is the most stressful.  The busiest events can have over 2000 participants on a busy day, with most crossing the finishing line in a 45 minute window.  Even with experienced volunteers who are speedy on the stopwatch buttons, sometimes things can and do go wrong.
+Volunteering at parkrun is great fun but most regulars would agree that the job of timekeeper is the most stressful.  The most popular events can have over 2000 participants on a busy day, with most crossing the finishing line in a 45 minute window.  Even with experienced volunteers who are speedy on the stopwatch buttons, sometimes things can, and do, go wrong.
 
 **Can we train a model to predict finish times and replace the stopwatch?**
 
 
 1. [Acquire data](#Acquire-Data) - data will be scraped and parsed using Requests and Beautiful Soup
-2. [Data Cleaning](#Data-Cleaning) - identify missing or inconsistent data.  Store in a clean format ready for processing.
+2. [Data Cleaning](#Data-Cleaning) - identify missing or inconsistent data.  Store in a clean format ready for processing
 3. [EDA](#EDA) - explore the data to identify trends and correlations
-4. [Modelling](#Modelling) - train a range of regression models, score, cross-validate and test on unseen data.
-5. [Evaluation](#Evaluation) - Evaluate and assess limitations of best model in practice against stated aim.
+4. [Modelling](#Modelling) - train a range of regression models, score, cross-validate and test on unseen data
+5. [Evaluation](#Evaluation) - Evaluate and assess limitations of best model in practice against stated aim
 6. [Conclusions](#Conclusions)
 
 ## Acquire Data
@@ -59,7 +59,7 @@ Given the size of the dataset I removed repeated text to reduce filesize, storin
 For more information on Age Grades see - [Parkrun Age Grades](https://support.parkrun.com/hc/en-us/articles/200565263-What-is-age-grading-)
 
 
-Data cleaning was, as always, a fairly long and iterative process so I will just highlight a few of the challenges that is presented.
+Data cleaning was, as always, a fairly long and iterative process so I will just highlight a few of the challenges that it presented.
 
 * Unknown Runners
 
@@ -129,7 +129,7 @@ I applied an 80:20 train-test split to the data.
 
 * Standardisation
 
-I applied the StandardScaler to the features as many of the models I will use regularisation which requires this.
+I applied the StandardScaler to the features as many of the models I will test require this.
 
 ### Fitting and scoring models
 
@@ -139,7 +139,7 @@ Finding the best model - Scores
 
 ![Regression Model scoring](images/scores_1.png)
 
-The simple Linear Regression model performs quite well with consistent train, test and mean CV scores.  Adding regularisation wiht the Ridge and Elastic Net models did not alter the results. The Decision Tree Regressor model showed significant improvement in R2 scores add errors, so I tested other tree-based models for comparison.
+The simple Linear Regression model performs quite well with consistent train, test and mean CV scores.  Adding regularisation wiht the Ridge and Elastic Net models did not alter the results. The Decision Tree Regressor model showed significant improvement in R2 scores and errors, so I tested other tree-based models for comparison.
 
 <details>
     
@@ -149,6 +149,7 @@ The simple Linear Regression model performs quite well with consistent train, te
 
 </details>
 
+The Gradient Boosting Regressor performed similarly to the Decision Tree but the training time was too long to allow for a full gridsearch of hyperparmeters (approx 6 hours to fit and cross-validate).  Therefore a Histogram-based Gradient Boosting regressor was used, which offers significantly faster performance (approx 30 mins to fit and cross-validate) and this produced the best results.
 
 ![Tree based model scores](images/scores_2.png)
 
@@ -171,11 +172,11 @@ Whilst overall the model scores very well on the full dataset, when applying to 
 
 * Different conditions are not well captured
 
-This is clearly illustrated in the evaluation of the Wimbledon Common event, where conditions were particulary muddy and difficult which resulted in model predicting significantly faster times than were observed. We can see from the feature importances for the best models that the event_index, season and month features, which do contain some information on the expected conditions have low importance so this is to be expected.
+This is clearly illustrated in the evaluation of the Wimbledon Common event, where conditions were particulary muddy and difficult resulting in the model predicting significantly faster times than were observed. We can see from the feature importances for the best models that the event_index, season and month features, which do contain some information on the expected conditions have low importance so this is to be expected.
 
 * Predicted times do not increase monotonically with position
 
-This is a major limitation as it means the results do not make sense in practice and could not be used without adjustment.  It would be difficult to improve much further on this as the predictions are largely based on previous times, but in reality this is a fun, amateur event and participants do not perform consistently in relation to their best time.  They may sometimes run slower to take part with friends, or run with dogs or even buggies which brings an unpredictable variation in times.
+This is a major limitation as it means the results do not make sense in practice and could not be used without adjustment.  It would be difficult to improve much further on this as the predictions are largely based on previous times, but in reality this is a fun, amateur event and participants do not perform consistently in relation to their best time.  They may sometimes run slower to take part with friends, or run with dogs or even buggies, which brings an unpredictable variation in times.
 
 * Unknown Runners and new participants
 
@@ -184,7 +185,7 @@ Additional processing of results would need to be developed for Unknown Runners,
 ## Conclusions
 
 Overall this has been an interesting and worthwhile project.  A large amount of data was collected through web scraping with nearly 2.7 million observations of finish times across 52 event locations in Greater London.  A full range of regression modelling techniques were employed and the models scored very highly on the full dataset.  However evaluating the model against the stated aim of predicting all finish times for an individual event revealed some significant limitations, particularly in unusual conditions.  The next steps for this project would be:
-- Add more detailed features to capture unique event conditions, which would likely involve a manual approach in assesing individual events.
+- Add more detailed features to capture unique event conditions, which would likely involve a manual approach in assessing individual events.
 - Collect data on a wider range of events, retrain and evaluate the model.
 - Use other techniques such as clustering and network analysis to identify event and runner characteristics and communities.
 
