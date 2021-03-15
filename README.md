@@ -23,7 +23,7 @@ Volunteering at parkrun is great fun but most regulars would agree that the job 
 
 ## Acquire Data
 
-I used the python libraries Requests and Beautiful Soup to scrape and parse results data published online.  Initially I had hoped to collect data from all past events across the UK but soon found that it would be sufficient and more practical to limit the number of events and timescale considered.  When Parkrun started in 2004 there was one event with 13 participants - a great start but certainly an outlier when considering the scale of current events.  I decided to focus on the Greater London area as it has a high density of events, with many runners participating at multiple locations over time, known as Parkrun Tourism!  I hoped that this data would be useful in identifying characteristics of different events and might allow other approaches including clustering and network analysis of running communities at a later stage.
+I used the Python libraries Requests and Beautiful Soup to scrape and parse results data published online.  Initially I had hoped to collect data from all past events across the UK but soon found that it would be sufficient and more practical to limit the number of events and timescale considered.  When Parkrun started in 2004 there was one event with 13 participants - a great start but certainly an outlier when considering the scale of current events.  I decided to focus on the Greater London area as it has a high density of events, with many runners participating at multiple locations over time, known as Parkrun Tourism!  I hoped that this data would be useful in identifying characteristics of different events and might allow other approaches including clustering and network analysis of running communities at a later stage.
 
 Data acquired:
 * 52 event locations in the Greater London Area
@@ -139,7 +139,7 @@ Finding the best model - Scores
 
 ![Regression Model scoring](images/scores_1.png)
 
-The simple Linear Regression model performs quite well with consistent train, test and mean CV scores.  Adding regularisation wiht the Ridge and Elastic Net models did not alter the results. The Decision Tree Regressor model showed significant improvement in R2 scores and errors, so I tested other tree-based models for comparison.
+The simple Linear Regression model performs quite well with consistent train, test and mean CV scores.  Adding regularisation with the Ridge and Elastic Net models did not alter the results. The Decision Tree Regressor model showed significant improvement in R2 scores and errors, so I tested other tree-based models for comparison.
 
 <details>
     
@@ -166,7 +166,7 @@ Included in this notebook:
 
 ### Limitations
 
-**Has the goal of predicting finish times with sufficient accuracy to replace the stopwatch been acheived?**
+**Has the goal of predicting finish times with sufficient accuracy to replace the stopwatch been achieved?**
 
 Whilst overall the model scores very well on the full dataset, when applying to single event to predict times it has some significant limitations
 
